@@ -34,7 +34,7 @@ export class PatientFormComponent {
       name: [null, [Validators.required]],
       age: [null, [Validators.required]],
       sex: [null, [Validators.required]],
-      check_in: [null, [Validators.required]],
+      checkIn: [null, [Validators.required]],
     });
 
     this.patientservice.showPatientFormModal.subscribe((status: boolean) => {
@@ -50,7 +50,7 @@ export class PatientFormComponent {
           name: data.name,
           age: data.age,
           sex: data.sex,
-          check_in: data.check_in,
+          checkIn: data.checkIn,
         });
         this.editId = data._id;
       }
