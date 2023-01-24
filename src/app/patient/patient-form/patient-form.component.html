@@ -1,0 +1,41 @@
+<nz-modal
+      [(nzVisible)]="ismodelShow"
+      nzTitle="Add Patient"
+      (nzOnCancel)="handleCancel()"
+      (nzOnOk)="submitForm()"
+      [nzOkLoading]="loading"
+    >
+    <ng-container *nzModalContent>
+
+        <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+            <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="name">Name</nz-form-label>
+            <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please enter valid name!">
+                <input nz-input formControlName="name" id="name" placeholder="name"  />
+            </nz-form-control>
+            </nz-form-item>
+            
+            <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="age" nzRequired>Age</nz-form-label>
+            <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please enter valid age!">
+                <input nz-input formControlName="age" id="age"  placeholder="age" />
+            </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="sex" nzRequired>Sex</nz-form-label>
+                <nz-radio-group formControlName="sex">
+                <label  nzErrorTip="Please enter valid sex!" nz-radio [nzValue]="sex.value" *ngFor="let sex of sexOption">{{ sex.label }}</label>
+              </nz-radio-group>
+            </nz-form-item>
+            
+            <nz-form-item>
+                <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="check_in" nzRequired>Check in</nz-form-label>
+                <nz-form-control [nzSm]="16" [nzXs]="24" nzErrorTip="Please enter valid check in!">
+                <nz-date-picker nz-input id="check_in" formControlName="check_in"></nz-date-picker>
+                </nz-form-control>
+            </nz-form-item>
+
+        </form>
+    </ng-container>
+    </nz-modal>

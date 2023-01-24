@@ -1,0 +1,13 @@
+
+    <nz-modal
+    [(nzVisible)]="showDeleteModal"
+    nzTitle="Delete Patient"
+    (nzOnCancel)="showDeleteModal=false"
+    (nzOnOk)="deleteData()"
+  >
+  <ng-container *nzModalContent>
+      <p>
+          Are you sure you want to delete {{patientDeleteData.name}} from the list of patients?
+      </p>
+  </ng-container>
+  </nz-modal>

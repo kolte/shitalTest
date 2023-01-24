@@ -1,43 +1,42 @@
 import { Component } from '@angular/core';
-import { patientModel } from '../models/patient.model';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { PatientModel } from '../models/patient.model';
 import { PatientService } from '../services/patient.service';
-import { v4 as uuidv4 } from 'uuid';
+import {
+  UntypedFormBuilder,
+  UntypedFormGroup,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-patient',
   templateUrl: './patient.component.html',
-  styleUrls: ['./patient.component.scss']
+  styleUrls: ['./patient.component.scss'],
 })
 export class PatientComponent {
-  listOfPatientData: readonly patientModel[] = [];
-  ismodelShow = false;
-  isDeleteModelShow = false;
+  listOfPatient: readonly PatientModel[] = [];
   loading = false;
-  validateForm!: UntypedFormGroup;
-  sexOption = [
-    { label: 'Male', value: 'Male' },
-    { label: 'Female', value: 'Female' },
-    { label: 'Undisclosed', value: 'Undisclosed' }
-  ];
-
-  constructor(private fb: UntypedFormBuilder,public patientservice:PatientService) {}
+  constructor(public patientservice: PatientService) {}
 
   ngOnInit(): void {
-    this.validateForm = this.fb.group({
-      name: [null, [Validators.required]],
-      age: [null, [Validators.required]],
-      sex: [null, [Validators.required]],
-      check_in: [null, [Validators.required]]
+    this.patientservice.patients.subscribe((patient) => {
+      this.listOfPatient = patient;
     });
-    this.getPatientData();
+    this.patientservice.getPatientData();
   }
 
-  getPatientData(){
-    this.listOfPatientData = this.patientservice.getPatientData();
+  editPatient(patientData: PatientModel) {
+    this.patientservice.changeStatusOfPatientModal(true, patientData);
   }
 
- 
-  
+  deletePatient(patientData: PatientModel) {
+    console.log(patientData)
+    this.patientservice.changeStatusOfDeleteModal(true, {
+      name: patientData.name,
+      _id: patientData._id,
+    });
+  }
 
+  showModal() {
+    this.patientservice.changeStatusOfPatientModal(true, null);
+  }
 }

@@ -6,19 +6,36 @@ import { PatientComponent } from './patient.component';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzModalModule } from 'ng-zorro-antd/modal';
-
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzRadioModule } from 'ng-zorro-antd/radio';
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
+import { PatientFormComponent } from './patient-form/patient-form.component';
+import { PatientDeleteModalComponent } from './patient-delete-modal/patient-delete-modal.component';
 
 @NgModule({
   declarations: [
-    PatientComponent
+    PatientComponent,
+    PatientFormComponent,
+    PatientDeleteModalComponent
   ],
   imports: [
     CommonModule,
     PatientRoutingModule,
     NzTableModule,
     NzDividerModule,
-    NzModalModule
-   
+    NzModalModule,
+    NzButtonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NzFormModule,
+    NzRadioModule,
+    NzDatePickerModule,
+    NzIconModule,
+    NzToolTipModule
   ]
 })
 export class PatientModule { }

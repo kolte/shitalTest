@@ -1,29 +1,32 @@
-<button nz-button nzType="primary" >
+<button nz-button nzType="primary" (click)="showModal()">
     <span>Add Patient</span>
-  </button>
-<nz-table #basicTable [nzData]="listOfPatientData">
+</button>
+<nz-table #basicTable [nzData]="listOfPatient">
     <thead>
-      <tr>
-        <th>Name</th>
-        <th>Age</th>
-        <th>Sex</th>
-        <th>Check-in</th>
-        <th>Action</th>
-      </tr>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Sex</th>
+            <th>Check-in</th>
+            <th>Action</th>
+        </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let data of basicTable.data">
-        <td>{{data.name}}</td>
-        <td>{{data.age}}</td>
-        <td>{{data.sex}}</td>
-        <td>{{data.check_in}}</td>
-        <td>
-          <span nz-icon nzType="edit" nzTheme="outline" nzTooltipTitle="Open the Edit modal"></span>
-          <nz-divider nzType="vertical"></nz-divider>
-          <span nz-icon nzType="delete" nzTheme="outline" nzTooltipTitle="Open the Delete modal"></span>
-        </td>
-      </tr>
+        <tr *ngFor="let data of basicTable.data">
+            <td>{{data.name}}</td>
+            <td>{{data.age}}</td>
+            <td>{{data.sex}}</td>
+            <td>{{data.check_in}}</td>
+            <td>
+                <span nz-icon nzType="edit" nzTheme="outline" nzTooltipTitle="Open the Edit modal"
+                    (click)="editPatient(data)"></span>
+                <nz-divider nzType="vertical"></nz-divider>
+                <span nz-icon nzType="delete" nzTheme="outline" nzTooltipTitle="Open the Delete modal"
+                    (click)="deletePatient(data)"></span>
+            </td>
+        </tr>
     </tbody>
-  </nz-table>
+</nz-table>
 
- 
+<app-patient-form></app-patient-form>
+<app-patient-delete-modal></app-patient-delete-modal>
