@@ -1,6 +1,8 @@
-<button nz-button nzType="primary" (click)="showModal()">
-    <span>Add Patient</span>
-</button>
+<div class="add-patient-btn">
+    <button nz-button nzType="primary" (click)="showModal()">
+        <span>Add Patient</span>
+    </button>
+</div>
 <nz-table #basicTable [nzData]="listOfPatient">
     <thead>
         <tr>
@@ -16,7 +18,7 @@
             <td>{{data.name}}</td>
             <td>{{data.age}}</td>
             <td>{{data.sex}}</td>
-            <td>{{data.checkIn}}</td>
+            <td>{{data.checkIn | date: 'MM/dd/yyyy'}}</td>
             <td>
                 <span nz-icon nzType="edit" nzTheme="outline" nzTooltipTitle="Open the Edit modal"
                     (click)="editPatient(data)"></span>
