@@ -7,6 +7,7 @@ import {
 import { PatientService } from '../../services/patient.service';
 import { v4 as uuidv4 } from 'uuid';
 import { PatientModel } from 'src/app/models/patient.model';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'app-patient-form',
@@ -26,7 +27,8 @@ export class PatientFormComponent {
 
   constructor(
     private fb: UntypedFormBuilder,
-    public patientservice: PatientService
+    public patientservice: PatientService,
+
   ) {}
 
   ngOnInit(): void {

@@ -1,7 +1,9 @@
-export interface patientModel {
-    uuid:string,
+export interface PatientModel {
+    _id?:string,
     name:string,
     age:number,
     sex:string,
-    check_in:string
+    checkIn:string
 }
+
+export interface PatientDeleteData { _id?: string, name?: string }
