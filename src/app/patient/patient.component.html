@@ -1,0 +1,29 @@
+<button nz-button nzType="primary" >
+    <span>Add Patient</span>
+  </button>
+<nz-table #basicTable [nzData]="listOfPatientData">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Sex</th>
+        <th>Check-in</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of basicTable.data">
+        <td>{{data.name}}</td>
+        <td>{{data.age}}</td>
+        <td>{{data.sex}}</td>
+        <td>{{data.check_in}}</td>
+        <td>
+          <span nz-icon nzType="edit" nzTheme="outline" nzTooltipTitle="Open the Edit modal"></span>
+          <nz-divider nzType="vertical"></nz-divider>
+          <span nz-icon nzType="delete" nzTheme="outline" nzTooltipTitle="Open the Delete modal"></span>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+
+ 
