@@ -20,13 +20,13 @@
             <td>{{data.sex}}</td>
             <td>{{data.checkIn | date: 'MM/dd/yyyy'}}</td>
             <td>
-                <span nz-icon nzType="edit" nzTheme="outline" nzTooltipTitle="Open the Edit modal"
+                <span nz-icon nzType="edit" nzTheme="outline"  nz-tooltip nzTooltipTitle="Open the Edit modal"
                     (click)="editPatient(data)"></span>
                 <nz-divider nzType="vertical"></nz-divider>
-                <span nz-icon nzType="delete" nzTheme="outline" nzTooltipTitle="Open the Delete modal"
+                <span nz-icon nzType="delete" nzTheme="outline"  nz-tooltip nzTooltipTitle="Open the Delete modal"
                     (click)="deletePatient(data)"></span>
                     <nz-divider nzType="vertical"></nz-divider>
-                <span nz-icon nzType="user" nzTheme="outline" nzTooltipTitle="Open the Patient History page"
+                <span nz-icon nzType="user" nzTheme="outline"  nz-tooltip  nzTooltipTitle="Open the Patient History page"
                         (click)="patientHistory()"></span>
             </td>
         </tr>
