@@ -57,7 +57,7 @@ export class PatientService {
 
   async editPatient(patientData: PatientModel) {
     try {
-      const res = await this.apiService.put(`/patient/${patientData.id}`, patientData);
+      const res = await this.apiService.patch(`/patient/${patientData.id}`, patientData);
       console.log(res);
       this.getPatientData();
       this.message.success(`Patient ${patientData.name} has been updated successfully.`);

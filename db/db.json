@@ -1,59 +1,22 @@
 {
   "patient": [
     {
-      "name": "Test",
+      "name": "Shital",
       "age": "24",
-      "sex": "Male",
-      "checkIn": "2023-01-25T09:14:01.746Z",
-      "id": "65b28aef-e409-490c-8324-9f6e711e051d",
+      "sex": "Female",
+      "checkIn": "2023-01-25T16:31:42.181Z",
+      "id": "bc49eb55-b9fe-4f45-9fdc-457b8c4f7bf4",
       "patientHistory": {
-        "height": "165",
-        "weight": "45",
+        "height": "43",
+        "weight": "163",
         "smoking": "non",
-        "alcohol": "light",
-        "drug": [
-          "Amphetamines",
-          "Heroine",
-          "No Drugs"
-        ],
-        "drugOther": "no",
-        "surgeries": [
-          "No Drugs"
-        ],
-        "surgeriesOther": "yes"
-      }
-    },
-    {
-      "name": "test 2",
-      "age": "34",
-      "sex": "Female",
-      "checkIn": "2023-01-11T09:14:23.542Z",
-      "id": "676075e7-8f5a-4d74-96a4-560869b3407b"
-    },
-    {
-      "name": "shital",
-      "age": "21",
-      "sex": "Female",
-      "checkIn": "2023-01-31T13:54:04.215Z",
-      "id": "52a22511-a297-4a85-be40-33ff5dc73927"
-    },
-    {
-      "name": "sreya",
-      "age": "22",
-      "sex": "Female",
-      "checkIn": "2023-01-26T15:32:05.633Z",
-      "id": "3df494c2-be8a-41f7-a2c5-e977d29f2021",
-      "patientHistory": {
-        "height": "165",
-        "weight": "43",
-        "smoking": "moderate",
-        "alcohol": "light",
+        "alcohol": "non",
         "drug": [
           "No Drugs"
         ],
-        "drugOther": "",
+        "drugOther": null,
         "surgeries": [
-          "Leg"
+          "No Drugs"
         ],
         "surgeriesOther": null
       }
