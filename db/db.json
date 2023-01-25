@@ -5,7 +5,21 @@
       "age": "24",
       "sex": "Male",
       "checkIn": "2023-01-25T09:14:01.746Z",
-      "id": "65b28aef-e409-490c-8324-9f6e711e051d"
+      "id": "65b28aef-e409-490c-8324-9f6e711e051d",
+      "patientHistory": {
+        "height": "10",
+        "weight": "10",
+        "smoking": "moderate",
+        "alcohol": "light",
+        "drug": [
+          "Mairjuana"
+        ],
+        "drugOther": null,
+        "surgeries": [
+          "Leg"
+        ],
+        "surgeriesOther": null
+      }
     },
     {
       "name": "test 2",
