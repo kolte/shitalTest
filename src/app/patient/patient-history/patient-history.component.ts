@@ -108,6 +108,7 @@ export class PatientHistoryComponent {
           : null,
         surgeriesOther: patientHistory.surgeriesOther || null
       });
+      this.calculateBMI()
     }
   }
 
