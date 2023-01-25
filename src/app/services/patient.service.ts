@@ -80,7 +80,6 @@ export class PatientService {
   async savePatientHistory(patientData: PatientModel, patientHistory: any) {
     try {
       const res = await this.apiService.patch(`/patient/${patientData.id}`, { patientHistory });
-      console.log(res);
       this.message.success(`Patient history of ${patientData.name} has been updated successfully.`);
     } catch (error: any) {
       if (error?.message) this.message.error(error.message);

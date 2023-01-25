@@ -36,6 +36,27 @@
       "sex": "Female",
       "checkIn": "2023-01-31T13:54:04.215Z",
       "id": "52a22511-a297-4a85-be40-33ff5dc73927"
+    },
+    {
+      "name": "sreya",
+      "age": "22",
+      "sex": "Female",
+      "checkIn": "2023-01-26T15:32:05.633Z",
+      "id": "3df494c2-be8a-41f7-a2c5-e977d29f2021",
+      "patientHistory": {
+        "height": "165",
+        "weight": "43",
+        "smoking": "moderate",
+        "alcohol": "light",
+        "drug": [
+          "No Drugs"
+        ],
+        "drugOther": "",
+        "surgeries": [
+          "Leg"
+        ],
+        "surgeriesOther": null
+      }
     }
   ]
 }
