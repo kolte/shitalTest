@@ -39,7 +39,12 @@
       ></nz-checkbox-group>
     </nz-form-control>
     </nz-form-item>
-    
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24"  nzFor="drugOther">Other</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" >
+          <input nz-input formControlName="drugOther" id="drugOther" />
+      </nz-form-control>
+    </nz-form-item>
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="alcohol" nzRequired>Surgeries</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please enter valid drug">
@@ -47,6 +52,12 @@
         formControlName="surgeries"
       ></nz-checkbox-group>
     </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24"  nzFor="surgeriesOther">Other</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" >
+          <input nz-input formControlName="surgeriesOther" id="surgeriesOther"  />
+      </nz-form-control>
     </nz-form-item>
     <div class="history-btn">
       <button nz-button class="login-form-button login-form-margin" (click)="submitForm()" [nzType]="'primary'">Save</button>

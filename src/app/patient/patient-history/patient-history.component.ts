@@ -54,14 +54,26 @@ export class PatientHistoryComponent {
       smoking: [null, [Validators.required]],
       alcohol: [null, [Validators.required]],
       drug:[this.drug,[Validators.required]],
+      drugOther:[''],
       surgeries: [this.surgeries,[Validators.required]],
+      surgeriesOther:[''],
     });
   }
 
   submitForm(){
     if (this.validateForm.valid) {
-      console.log(this.validateForm.value)
-      return
+      console.log(this.validateForm.value);
+      const data={
+        height:this.validateForm.value.height,
+        weight:this.validateForm.value.weight,
+        smoking:this.validateForm.value.smoking,
+        alcohol:this.validateForm.value.alcohol,
+        drug:this.validateForm.value.drug.filter((_:any)=>_.checked==true),
+        drugOther:this.validateForm.value.drugOther,
+        surgeries:this.validateForm.value.surgeries.filter((_:any)=>_.checked==true),
+        surgeriesOther:this.validateForm.value.surgeriesOther
+      }
+      console.log(data)
     } else {
       Object.values(this.validateForm.controls).forEach((control) => {
         if (control.invalid) {
