@@ -9,7 +9,7 @@ const routes: Routes = [
     component:PatientComponent
   },
   {
-    path:'history',
+    path:'patient-history/:id',
     component:PatientHistoryComponent
   }
 ];

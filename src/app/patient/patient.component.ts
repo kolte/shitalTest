@@ -3,19 +3,18 @@ import { Route, Router } from '@angular/router';
 import { PatientModel } from '../models/patient.model';
 import { PatientService } from '../services/patient.service';
 
-
 @Component({
   selector: 'app-patient',
   templateUrl: './patient.component.html',
-  styleUrls: ['./patient.component.scss'],
+  styleUrls: ['./patient.component.scss']
 })
 export class PatientComponent {
   listOfPatient: readonly PatientModel[] = [];
   loading = false;
-  constructor(public patientservice: PatientService,public router:Router) {}
+  constructor(public patientservice: PatientService, public router: Router) {}
 
   ngOnInit(): void {
-    this.patientservice.patients.subscribe((patient) => {
+    this.patientservice.patients.subscribe(patient => {
       this.listOfPatient = patient;
     });
     this.patientservice.getPatientData();
@@ -26,15 +25,15 @@ export class PatientComponent {
   }
 
   deletePatient(patientData: PatientModel) {
-    console.log(patientData)
+    console.log(patientData);
     this.patientservice.changeStatusOfDeleteModal(true, {
       name: patientData.name,
-      id: patientData.id,
+      id: patientData.id
     });
   }
 
-  patientHistory(){
-    this.router.navigate(['/history'])
+  patientHistory(id: string | undefined) {
+    if (id) this.router.navigate(['/patient-history', id]);
   }
 
   showModal() {
