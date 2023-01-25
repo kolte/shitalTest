@@ -1,10 +1,19 @@
 <nz-modal
       [(nzVisible)]="ismodelShow"
-      nzTitle="Add Patient"
+      [nzTitle]='modalTitle'
       (nzOnCancel)="handleCancel()"
       (nzOnOk)="submitForm()"
       [nzOkLoading]="loading"
     >
+    <ng-template #modalTitle>
+        <div *ngIf="!editId || editId==''">
+            <span nz-icon nzType="plus" nzTheme="outline"></span> Add Patient
+        </div>
+        <div *ngIf="editId && editId!=''">
+            <span nz-icon nzType="edit" nzTheme="outline"></span> Edits Patient
+        </div>
+      </ng-template>
+    <!-- <span nz-icon nzType="edit" nzTheme="outline"></span> -->
     <ng-container *nzModalContent>
 
         <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">

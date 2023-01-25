@@ -5,6 +5,9 @@
     (nzOnCancel)="showDeleteModal=false"
     (nzOnOk)="deleteData()"
   >
+  <ng-template #modalTitle>
+    <span nz-icon nzType="delete" nzTheme="outline"></span> Delete Patient
+    </ng-template>
   <ng-container *nzModalContent>
       <p>
           Are you sure you want to delete {{patientDeleteData.name}} from the list of patients?
