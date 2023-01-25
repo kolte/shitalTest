@@ -1,17 +1,18 @@
 <div class="container">
-  <h1>History</h1>
+  <h1><span nz-icon nzType="user" nzTheme="outline"></span> {{patientData?.name}} History</h1>
   <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
     <div nz-row [nzGutter]="16">
       <div nz-col class="gutter-row" [nzSpan]="1"></div>
       <div nz-col class="gutter-row" [nzSpan]="6">
         <nz-form-item>
-          <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired nzFor="height">Height</nz-form-label>
+          <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired nzFor="height">Height(cm)</nz-form-label>
           <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please enter valid name!">
             <input
               nz-input
               formControlName="height"
               id="height"
               placeholder="height"
+              (ngModelChange)="calculateBMI()"
               onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
             />
           </nz-form-control>
@@ -19,19 +20,20 @@
       </div>
       <div nz-col class="gutter-row" [nzSpan]="6">
         <nz-form-item>
-          <nz-form-label [nzSm]="8" [nzXs]="24" nzFor="weight" nzRequired>weight</nz-form-label>
+          <nz-form-label [nzSm]="8" [nzXs]="24" nzFor="weight" nzRequired>weight(kg)</nz-form-label>
           <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please enter valid weight!">
             <input
               nz-input
               formControlName="weight"
               id="weight"
               placeholder="weight"
+              (ngModelChange)="calculateBMI()"
               onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
             />
           </nz-form-control>
         </nz-form-item>
       </div>
-      <div nz-col class="gutter-row" [nzSpan]="6">BMI:</div>
+      <div nz-col class="gutter-row" [nzSpan]="6">BMI: {{BMI  | number : '1.2-2'}}</div>
     </div>
     <nz-form-item>
       <nz-form-label [nzSm]="3" [nzXs]="24" nzFor="smoking" nzRequired>Smoking</nz-form-label>
@@ -60,7 +62,7 @@
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
-      <nz-form-label [nzSm]="3" [nzXs]="24" nzFor="drugOther">Other</nz-form-label>
+      <nz-form-label [nzSm]="3" [nzXs]="24" nzFor="drugOther">Others</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24">
         <input nz-input formControlName="drugOther" id="drugOther" />
       </nz-form-control>
@@ -72,7 +74,7 @@
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
-      <nz-form-label [nzSm]="3" [nzXs]="24" nzFor="surgeriesOther">Other</nz-form-label>
+      <nz-form-label [nzSm]="3" [nzXs]="24" nzFor="surgeriesOther">Others</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24">
         <input nz-input formControlName="surgeriesOther" id="surgeriesOther" />
       </nz-form-control>

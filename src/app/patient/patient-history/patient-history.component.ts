@@ -41,7 +41,7 @@ export class PatientHistoryComponent {
   ];
   activePatientId?: string;
   patientData?: PatientModel;
-
+  BMI=0;
   constructor(
     private fb: UntypedFormBuilder,
     private route: ActivatedRoute,
@@ -135,6 +135,18 @@ export class PatientHistoryComponent {
           control.updateValueAndValidity({ onlySelf: true });
         }
       });
+    }
+  }
+
+  calculateBMI(){
+    if(this.validateForm.value.height>0 && this.validateForm.value.weight>0){
+    let height = this.validateForm.value.height;
+    let weight = this.validateForm.value.weight;
+    let BMI = (weight/height/height)*10000; 
+    this.BMI = BMI;
+    }
+    else{
+      this.BMI=0;
     }
   }
 
