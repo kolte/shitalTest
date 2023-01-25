@@ -24,9 +24,8 @@ export class PatientDeleteModalComponent {
   }
 
   deleteData() {
-    console.log('=====',this.patientDeleteData._id)
-    if (!this.patientDeleteData._id) return;
-    this.patientservice.deletePatient(this.patientDeleteData._id);
+    if (!this.patientDeleteData.id) return;
+    this.patientservice.deletePatient(this.patientDeleteData.id);
     this.patientservice.changeStatusOfDeleteModal(false, {});
   }
 }

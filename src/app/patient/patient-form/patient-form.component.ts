@@ -54,7 +54,7 @@ export class PatientFormComponent {
           sex: data.sex,
           checkIn: data.checkIn,
         });
-        this.editId = data._id;
+        this.editId = data.id;
       }
     });
   }
@@ -64,12 +64,12 @@ export class PatientFormComponent {
       if (this.editId) {
         this.patientservice.editPatient({
           ...this.validateForm.value,
-          _id: this.editId,
+          id: this.editId,
         });
       } else {
         this.patientservice.addPatient({
           ...this.validateForm.value,
-          _id: uuidv4(),
+          id: uuidv4(),
         });
       }
       this.patientservice.changeStatusOfPatientModal(false, null);

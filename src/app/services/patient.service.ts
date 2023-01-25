@@ -2,23 +2,19 @@ import { Injectable } from '@angular/core';
 import { PatientDeleteData, PatientModel } from '../models/patient.model';
 import { BehaviorSubject } from 'rxjs';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { ApiService } from './apiservice.service';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class PatientService {
   public showDeleteModal: BehaviorSubject<boolean> = new BehaviorSubject(false);
-  public toBeDeleteData: BehaviorSubject<PatientDeleteData> =
-    new BehaviorSubject({});
-  public patients: BehaviorSubject<PatientModel[]> = new BehaviorSubject<
-    PatientModel[]
-  >([]);
-  public showPatientFormModal: BehaviorSubject<boolean> = new BehaviorSubject(
-    false
-  );
-  public toBeEditData: BehaviorSubject<PatientModel | null> =
-    new BehaviorSubject<PatientModel | null>(null);
-  constructor(private message:NzMessageService) {}
+  public toBeDeleteData: BehaviorSubject<PatientDeleteData> = new BehaviorSubject({});
+  public patients: BehaviorSubject<PatientModel[]> = new BehaviorSubject<PatientModel[]>([]);
+  public showPatientFormModal: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  public toBeEditData: BehaviorSubject<PatientModel | null> = new BehaviorSubject<PatientModel | null>(null);
+
+  constructor(private message: NzMessageService, private apiService: ApiService) {}
 
   changeStatusOfDeleteModal(status: boolean, data: PatientDeleteData) {
     this.showDeleteModal.next(status);
@@ -30,56 +26,45 @@ export class PatientService {
     this.toBeEditData.next(data);
   }
 
-  getAppdata() {
-    return JSON.parse(localStorage.getItem('appData') || '{}');
-  }
-
-  getPatientData() {
-    const patients = (this.getAppdata().patient || []).filter((pat: any) => {
-      return pat;
-    });
-    this.patients.next(patients);
-  }
-
-  addPatient(patientData: PatientModel) {
+  async getPatientData() {
     try {
-      const appData = this.getAppdata();
-      localStorage.setItem(
-        'appData',
-        JSON.stringify({
-          ...appData,
-          patient: [...(appData.patient || []), patientData],
-        })
-      );
-      this.message.success(`New patient ${patientData.name} has been added successfully.`)
-    } catch (error) {}
-    this.getPatientData();
+      const { data: patients }: { data: PatientModel[] } = await this.apiService.get('/patient');
+      this.patients.next(patients);
+    } catch (error: any) {
+      if (error?.message) this.message.error(error.message);
+    }
   }
 
-  editPatient(patientData: PatientModel) {
-    let data = this.getAppdata().patient || [];
-    const findData = data.findIndex((pat: any) => pat._id === patientData._id);
-    data[findData] = patientData;
-    const appData = this.getAppdata();
-    localStorage.setItem(
-      'appData',
-      JSON.stringify({ ...appData, patient: data })
-    );
-    this.getPatientData();
-    this.message.success(`Patient ${patientData.name} has been updated successfully.`)
-
+  async addPatient(patientData: PatientModel) {
+    try {
+      const res = await this.apiService.post('/patient', patientData);
+      console.log(res);
+      this.getPatientData();
+      this.message.success(`New patient ${patientData.name} has been added successfully.`);
+    } catch (error: any) {
+      if (error?.message) this.message.error(error.message);
+    }
   }
 
-  deletePatient(id: string) {
-    let data = this.getAppdata().patient || [];
-    const deleteData = data.findIndex((emp: any) => emp._id === id);
-    data.splice(deleteData, 1);
-    const appData = this.getAppdata();
-    localStorage.setItem(
-      'appData',
-      JSON.stringify({ ...appData, patient: data })
-    );
-    this.message.success(`Patient has been deleted successfully.`)
-    this.getPatientData();
+  async editPatient(patientData: PatientModel) {
+    try {
+      const res = await this.apiService.put(`/patient/${patientData.id}`, patientData);
+      console.log(res);
+      this.getPatientData();
+      this.message.success(`Patient ${patientData.name} has been updated successfully.`);
+    } catch (error: any) {
+      if (error?.message) this.message.error(error.message);
+    }
+  }
+
+  async deletePatient(id: string) {
+    try {
+      const res = await this.apiService.delete(`/patient/${id}`);
+      console.log(res);
+      this.getPatientData();
+      this.message.success(`Patient has been deleted successfully.`);
+    } catch (error: any) {
+      if (error?.message) this.message.error(error.message);
+    }
   }
 }

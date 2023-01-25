@@ -32,7 +32,7 @@ export class PatientComponent {
     console.log(patientData)
     this.patientservice.changeStatusOfDeleteModal(true, {
       name: patientData.name,
-      _id: patientData._id,
+      id: patientData.id,
     });
   }
 
