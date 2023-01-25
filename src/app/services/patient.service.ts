@@ -34,6 +34,15 @@ export class PatientService {
       if (error?.message) this.message.error(error.message);
     }
   }
+  async getPatientById(id: string) {
+    try {
+      const { data: patient }: { data: PatientModel } = await this.apiService.get(`/patient/${id}`);
+      return patient;
+    } catch (error: any) {
+      if (error?.message) this.message.error(error.message);
+      return false;
+    }
+  }
 
   async addPatient(patientData: PatientModel) {
     try {

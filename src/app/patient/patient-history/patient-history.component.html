@@ -1,33 +1,40 @@
 <div class="container">
   <h1>History</h1>
   <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+    <div nz-row [nzGutter]="16">
+      <div nz-col class="gutter-row" [nzSpan]="1"></div>
+      <div nz-col class="gutter-row" [nzSpan]="6">
+        <nz-form-item>
+          <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired nzFor="height">Height</nz-form-label>
+          <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please enter valid name!">
+            <input
+              nz-input
+              formControlName="height"
+              id="height"
+              placeholder="height"
+              onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
+            />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col class="gutter-row" [nzSpan]="6">
+        <nz-form-item>
+          <nz-form-label [nzSm]="8" [nzXs]="24" nzFor="weight" nzRequired>weight</nz-form-label>
+          <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please enter valid weight!">
+            <input
+              nz-input
+              formControlName="weight"
+              id="weight"
+              placeholder="weight"
+              onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
+            />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col class="gutter-row" [nzSpan]="6">BMI:</div>
+    </div>
     <nz-form-item>
-      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="height">Height</nz-form-label>
-      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please enter valid name!">
-        <input
-          nz-input
-          formControlName="height"
-          id="height"
-          placeholder="height"
-          onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
-        />
-      </nz-form-control>
-    </nz-form-item>
-
-    <nz-form-item>
-      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="weight" nzRequired>weight</nz-form-label>
-      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please enter valid weight!">
-        <input
-          nz-input
-          formControlName="weight"
-          id="weight"
-          placeholder="weight"
-          onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
-        />
-      </nz-form-control>
-    </nz-form-item>
-    <nz-form-item>
-      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="smoking" nzRequired>Smoking</nz-form-label>
+      <nz-form-label [nzSm]="3" [nzXs]="24" nzFor="smoking" nzRequired>Smoking</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please enter valid smoking!">
         <nz-radio-group formControlName="smoking">
           <label nzErrorTip="" nz-radio [nzValue]="smoke.value" *ngFor="let smoke of smokerOptions">{{
@@ -37,7 +44,7 @@
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
-      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="alcohol" nzRequired>Alcohol Drinking</nz-form-label>
+      <nz-form-label [nzSm]="3" [nzXs]="24" nzFor="alcohol" nzRequired>Alcohol Drinking</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Drinking is required!">
         <nz-radio-group formControlName="alcohol">
           <label nzErrorTip="" nz-radio [nzValue]="drink.value" *ngFor="let drink of alcoholOptions">{{
@@ -47,38 +54,31 @@
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
-      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="alcohol" nzRequired>Drug Usege</nz-form-label>
+      <nz-form-label [nzSm]="3" [nzXs]="24" nzFor="alcohol" nzRequired>Drug Usege</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please enter valid drug">
         <nz-checkbox-group formControlName="drug"></nz-checkbox-group>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
-      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="drugOther">Other</nz-form-label>
+      <nz-form-label [nzSm]="3" [nzXs]="24" nzFor="drugOther">Other</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24">
         <input nz-input formControlName="drugOther" id="drugOther" />
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
-      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="alcohol" nzRequired>Surgeries</nz-form-label>
+      <nz-form-label [nzSm]="3" [nzXs]="24" nzFor="alcohol" nzRequired>Surgeries</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please enter valid drug">
         <nz-checkbox-group formControlName="surgeries"></nz-checkbox-group>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
-      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="surgeriesOther">Other</nz-form-label>
+      <nz-form-label [nzSm]="3" [nzXs]="24" nzFor="surgeriesOther">Other</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24">
         <input nz-input formControlName="surgeriesOther" id="surgeriesOther" />
       </nz-form-control>
     </nz-form-item>
     <div class="history-btn">
-      <button
-        nz-button
-        class="login-form-button login-form-margin"
-        (click)="submitForm()"
-        [nzType]="'primary'"
-      >
-        Save
-      </button>
+      <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Save</button>
       <button nz-button nzType="default" class="btn-back" (click)="gotoDashboard()">Back To Dashboard</button>
     </div>
   </form>

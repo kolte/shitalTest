@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { Route, Router } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
+import { PatientModel } from 'src/app/models/patient.model';
 import { PatientService } from '../../services/patient.service';
 
 @Component({
@@ -33,12 +34,20 @@ export class PatientHistoryComponent {
   ];
   surgeriesOptions = [
     { label: 'Heart Surgery', value: 'Heart', checked: false },
-    { label: 'Brfeast Surgery', value: 'Brfeast', checked: false },
+    { label: 'Breast Surgery', value: 'Breast', checked: false },
     { label: 'Leg Surgery', value: 'Leg', checked: false },
     { label: 'Arm Surgery', value: 'Arm', checked: false },
     { label: 'No Drugs', value: 'No Drugs', checked: false }
   ];
-  constructor(private fb: UntypedFormBuilder, public patientservice: PatientService, public router: Router) {}
+  activePatientId?: string;
+  patientData?: PatientModel;
+
+  constructor(
+    private fb: UntypedFormBuilder,
+    private route: ActivatedRoute,
+    public patientservice: PatientService,
+    public router: Router
+  ) {}
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
@@ -65,25 +74,62 @@ export class PatientHistoryComponent {
       ],
       surgeriesOther: [null]
     });
+    this.route.params.subscribe((para: any) => {
+      this.activePatientId = para.id;
+      this.getPatientData();
+    });
   }
 
-  submitForm() {
-    if (this.validateForm.valid) {
-      console.log(this.validateForm.value);
+  async getPatientData() {
+    if (this.activePatientId) {
+      const patientData = await this.patientservice.getPatientById(this.activePatientId);
+      if (!patientData) return;
+      this.patientData = patientData;
+      const { patientHistory } = patientData;
+      if (!patientHistory) return;
+      console.log(patientHistory.drug)
+      this.validateForm.patchValue({
+        height: patientHistory.height || null,
+        weight: patientHistory.weight || null,
+        smoking: patientHistory.smoking || null,
+        alcohol: patientHistory.alcohol || null,
+        drug: patientHistory.drug
+          ? this.drugOptions.map(drug => {
+              drug.checked = patientHistory.drug.includes(drug.value);
+              return drug;
+            })
+          : null,
+        drugOther: patientHistory.drugOther || null,
+        surgeries: patientHistory.surgeries
+          ? this.surgeriesOptions.map(drug => {
+              drug.checked = patientHistory.surgeries.includes(drug.value);
+              return drug;
+            })
+          : null,
+        surgeriesOther: patientHistory.surgeriesOther || null
+      });
+    }
+  }
+
+  async submitForm() {
+    if (this.validateForm.valid && this.patientData) {
       const data = {
         height: this.validateForm.value.height,
         weight: this.validateForm.value.weight,
         smoking: this.validateForm.value.smoking,
         alcohol: this.validateForm.value.alcohol,
-        drug: this.validateForm.value.drug.filter((_: any) => _.checked == true),
+        drug: this.validateForm.value.drug
+          .filter((_: any) => _.checked == true)
+          .map((_: { value: string }) => _.value),
         drugOther: this.validateForm.value.drugOther,
-        surgeries: this.validateForm.value.surgeries.filter((_: any) => _.checked == true),
+        surgeries: this.validateForm.value.surgeries
+          .filter((_: any) => _.checked == true)
+          .map((_: { value: string }) => _.value),
         surgeriesOther: this.validateForm.value.surgeriesOther
       };
-      console.log(data);
+      await this.patientservice.savePatientHistory(this.patientData, data);
     } else {
       Object.values(this.validateForm.controls).forEach(control => {
-        console.log(control);
         if (control.invalid) {
           control.markAsDirty();
           control.updateValueAndValidity({ onlySelf: true });
