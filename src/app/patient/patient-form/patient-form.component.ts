@@ -6,8 +6,7 @@ import {
 } from '@angular/forms';
 import { PatientService } from '../../services/patient.service';
 import { v4 as uuidv4 } from 'uuid';
-import { PatientModel } from 'src/app/models/patient.model';
-import { NzMessageService } from 'ng-zorro-antd/message';
+import { PatientModel } from '../../models/patient.model';
 
 @Component({
   selector: 'app-patient-form',
