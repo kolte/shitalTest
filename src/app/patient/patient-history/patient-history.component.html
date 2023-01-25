@@ -1,6 +1,7 @@
 
- <div>
-  <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+ <div class="container">
+   <h1 >History</h1>
+   <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
     <nz-form-item>
     <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="height">Height</nz-form-label>
     <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please enter valid name!">
@@ -15,27 +16,41 @@
     </nz-form-control>
     </nz-form-item>
     <nz-form-item>
-    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="smoking" nzRequired>*Smoking</nz-form-label>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="smoking" nzRequired>Smoking</nz-form-label>
     <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please enter valid smoking!">
         <nz-radio-group formControlName="smoking">
         <label  nzErrorTip="" nz-radio [nzValue]="smoke.value" *ngFor="let smoke of smokerOption">{{ smoke.label }}</label>
       </nz-radio-group>
     </nz-form-control>
     </nz-form-item>
-
     <nz-form-item>
-    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="alcohol" nzRequired>*Alcohol Drinking</nz-form-label>
-    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please enter valid alcohol!">
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="alcohol" nzRequired>Alcohol Drinking</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Drinking is required!">
         <nz-radio-group formControlName="alcohol">
         <label  nzErrorTip="" nz-radio [nzValue]="drink.value" *ngFor="let drink of alcoholOption">{{ drink.label }}</label>
       </nz-radio-group>
     </nz-form-control>
     </nz-form-item>
-      <!-- <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="drug" nzRequired>*Drug Drinking</nz-form-label>
-        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please enter valid drug!">
-            <nz-checkbox-group formControlName="drug" ></nz-checkbox-group>
-        </nz-form-control>
-      </nz-form-item> -->
-</form>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="alcohol" nzRequired>Drug Usege</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please enter valid drug">
+        <nz-checkbox-group
+        formControlName="drug"
+      ></nz-checkbox-group>
+    </nz-form-control>
+    </nz-form-item>
+    
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="alcohol" nzRequired>Surgeries</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please enter valid drug">
+        <nz-checkbox-group  (nzOnChange)="checkData($event)"
+        formControlName="surgeries"
+      ></nz-checkbox-group>
+    </nz-form-control>
+    </nz-form-item>
+    <div class="history-btn">
+      <button nz-button class="login-form-button login-form-margin" (click)="submitForm()" [nzType]="'primary'">Save</button>
+      <button nz-button nzType="default" class="btn-back" (click)="gotoDashboard()">Back To Dashboard</button>
+    </div>
+  </form>
  </div>

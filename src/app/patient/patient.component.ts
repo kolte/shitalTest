@@ -1,11 +1,8 @@
 import { Component } from '@angular/core';
+import { Route, Router } from '@angular/router';
 import { PatientModel } from '../models/patient.model';
 import { PatientService } from '../services/patient.service';
-import {
-  UntypedFormBuilder,
-  UntypedFormGroup,
-  Validators,
-} from '@angular/forms';
+
 
 @Component({
   selector: 'app-patient',
@@ -15,7 +12,7 @@ import {
 export class PatientComponent {
   listOfPatient: readonly PatientModel[] = [];
   loading = false;
-  constructor(public patientservice: PatientService) {}
+  constructor(public patientservice: PatientService,public router:Router) {}
 
   ngOnInit(): void {
     this.patientservice.patients.subscribe((patient) => {
@@ -34,6 +31,10 @@ export class PatientComponent {
       name: patientData.name,
       id: patientData.id,
     });
+  }
+
+  patientHistory(){
+    this.router.navigate(['/history'])
   }
 
   showModal() {

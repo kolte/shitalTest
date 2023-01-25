@@ -16,7 +16,6 @@ import { PatientFormComponent } from './patient-form/patient-form.component';
 import { PatientDeleteModalComponent } from './patient-delete-modal/patient-delete-modal.component';
 import { PatientHistoryComponent } from './patient-history/patient-history.component';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
-
 @NgModule({
   declarations: [
     PatientComponent,
