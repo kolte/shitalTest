@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { PatientRoutingModule } from './patient-routing.module';
 import { PatientComponent } from './patient.component';
 import { NzTableModule } from 'ng-zorro-antd/table';
@@ -15,12 +14,15 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { PatientFormComponent } from './patient-form/patient-form.component';
 import { PatientDeleteModalComponent } from './patient-delete-modal/patient-delete-modal.component';
+import { PatientHistoryComponent } from './patient-history/patient-history.component';
+import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 
 @NgModule({
   declarations: [
     PatientComponent,
     PatientFormComponent,
-    PatientDeleteModalComponent
+    PatientDeleteModalComponent,
+    PatientHistoryComponent
   ],
   imports: [
     CommonModule,
@@ -35,7 +37,8 @@ import { PatientDeleteModalComponent } from './patient-delete-modal/patient-dele
     NzRadioModule,
     NzDatePickerModule,
     NzIconModule,
-    NzToolTipModule
+    NzToolTipModule,
+    NzCheckboxModule
   ]
 })
 export class PatientModule { }

@@ -18,15 +18,17 @@
             <nz-form-item>
             <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="age" nzRequired>Age</nz-form-label>
             <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please enter valid age!">
-                <input nz-input formControlName="age" id="age"  placeholder="age" />
+                <input nz-input formControlName="age" id="age"  placeholder="age" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"/>
             </nz-form-control>
             </nz-form-item>
             <nz-form-item>
 
             <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="sex" nzRequired>Sex</nz-form-label>
+            <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please enter valid sex!">
                 <nz-radio-group formControlName="sex">
-                <label  nzErrorTip="Please enter valid sex!" nz-radio [nzValue]="sex.value" *ngFor="let sex of sexOption">{{ sex.label }}</label>
+                <label  nzErrorTip="" nz-radio [nzValue]="sex.value" *ngFor="let sex of sexOption">{{ sex.label }}</label>
               </nz-radio-group>
+            </nz-form-control>
             </nz-form-item>
             
             <nz-form-item>
